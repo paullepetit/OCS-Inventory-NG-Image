@@ -41,6 +41,7 @@ RUN apt-get -y install \
     make
 
 RUN cpan -i XML::Entities
+VOLUME /var/lib/mysql
 
 RUN cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
 
@@ -92,6 +93,7 @@ RUN cp binutils/ipdiscover-util.pl /usr/share/ocsinventory-reports/ocsreports/ip
 
 ADD /conf/ocsinventory-reports.conf /etc/apache2/conf-available/
 ADD /conf/z-ocsinventory-server.conf /etc/apache2/conf-available/
+ADD dbconfig.inc.php /usr/share/ocsinventory-reports/ocsreports/
 
 RUN ln -s /etc/apache2/conf-available/ocsinventory-reports.conf /etc/apache2/conf-enabled/ocsinventory-reports.conf
 RUN ln -s /etc/apache2/conf-available/z-ocsinventory-server.conf /etc/apache2/conf-enabled/z-ocsinventory-server.conf
