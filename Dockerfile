@@ -104,6 +104,5 @@ RUN ln -s /etc/apache2/conf-available/z-ocsinventory-server.conf /etc/apache2/co
 
 EXPOSE 80
 EXPOSE 443
-EXPOSE 3306
 
-CMD ["/root/run.sh"]
+CMD ["/bin/bash", "/root/run.sh"]
