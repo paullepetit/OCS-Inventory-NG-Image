@@ -103,4 +103,4 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 3306
 
-CMD [./script.sh]
+CMD [/root/script.sh]
