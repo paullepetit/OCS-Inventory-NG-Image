@@ -80,13 +80,10 @@ WORKDIR /tmp/ocs
 RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports
 
 RUN chown -R www-data: /usr/share/ocsinventory-reports/
-RUN bash -c 'mkdir -p /tmp/storage/{download,ipd,logs,scripts,snmp}' ;\
-    #mkdir -p /var/lib/ocsinventory-reports/download ;\
-    #mkdir /var/lib/ocsinventory-reports/ipd ;\
-    #mkdir /var/lib/ocsinventory-reports/logs ;\
-    #mkdir /var/lib/ocsinventory-reports/scripts ;\
-    #mkdir /var/lib/ocsinventory-reports/snmp ;\
-    chmod -R +w /var/lib/ocsinventory-reports ;\
+
+RUN bash -c 'mkdir -p /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp}'
+
+RUN chmod -R +w /var/lib/ocsinventory-reports ;\
     chown www-data: -R /var/lib/ocsinventory-reports
 
 
