@@ -77,8 +77,8 @@ ENV APACHE_LOG_DIR      /var/log/apache2
 
 WORKDIR /tmp/ocs
 
-RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports ;\
-    mkdir -p /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp}
+RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports
+RUN mkdir -p /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp}
 
 RUN chmod -R +w /var/lib/ocsinventory-reports ;\
     chown www-data: -R /var/lib/ocsinventory-reports/ ;\
