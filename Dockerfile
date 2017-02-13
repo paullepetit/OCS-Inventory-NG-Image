@@ -77,23 +77,25 @@ ENV APACHE_LOG_DIR      /var/log/apache2
 
 WORKDIR /tmp/ocs
 
-RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports ;\
-    mkdir -p /var/lib/ocsinventory-reports/ ;\
-    mkdir /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp}
+RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports
 
-RUN chmod -R +w /var/lib/ocsinventory-reports ;\
-    chown www-data: -R /var/lib/ocsinventory-reports/ ;\
-    chown -R www-data: /usr/share/ocsinventory-reports/
+RUN chown -R www-data: /usr/share/ocsinventory-reports/ ;\
+    mkdir -p /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp} ;\
+    chmod -R +w /var/lib/ocsinventory-reports ;\
+    chown www-data: -R /var/lib/ocsinventory-reports
 
 
-RUN cp binutils/ipdiscover-util.pl /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl ;\
-    chown www-data: /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl ;\
+RUN cp binutils/ipdiscover-util.pl /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl
+
+RUN chown www-data: /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl ;\
     chmod 755 /usr/share/ocsinventory-reports/ocsreports/ipdiscover-util.pl ;\
+    chmod +w /usr/share/ocsinventory-reports/ocsreports/dbconfig.inc.php ;\
     mkdir -p /var/log/ocsinventory-server/ ;\
     chmod +w /var/log/ocsinventory-server/
 
 ADD /conf/ocsinventory-reports.conf /etc/apache2/conf-available/
 ADD /conf/z-ocsinventory-server.conf /etc/apache2/conf-available/
+
 ADD dbconfig.inc.php /usr/share/ocsinventory-reports/ocsreports/
 
 ADD run.sh /root/run.sh
