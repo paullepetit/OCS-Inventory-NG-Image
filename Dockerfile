@@ -77,8 +77,9 @@ ENV APACHE_LOG_DIR      /var/log/apache2
 
 WORKDIR /tmp/ocs
 
-RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports
-RUN mkdir -p /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp}
+RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports ;\
+    mkdir -p /var/lib/ocsinventory-reports/ ;\
+    mkdir /var/lib/ocsinventory-reports/{download,ipd,logs,scripts,snmp}
 
 RUN chmod -R +w /var/lib/ocsinventory-reports ;\
     chown www-data: -R /var/lib/ocsinventory-reports/ ;\
@@ -101,8 +102,6 @@ RUN chmod +x /root/run.sh
 
 RUN ln -s /etc/apache2/conf-available/ocsinventory-reports.conf /etc/apache2/conf-enabled/ocsinventory-reports.conf
 RUN ln -s /etc/apache2/conf-available/z-ocsinventory-server.conf /etc/apache2/conf-enabled/z-ocsinventory-server.conf
-
-VOLUME ["/etc/apache2", "/etc/ocsinventory-server/", "/var/lib/ocsinventory-reports/", "/usr/share/ocsinventory-reports/ocsreports/"]
 
 EXPOSE 80
 EXPOSE 443
